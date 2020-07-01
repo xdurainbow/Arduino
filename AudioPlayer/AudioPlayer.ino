@@ -1,0 +1,75 @@
+#include "pitches.h"
+
+// 值定义在pitches中
+int melody[] = {
+NOTE_F4, NOTE_F4, NOTE_F4, NOTE_F4, NOTE_A4,NOTE_A4,NOTE_A4,NOTE_A4,
+NOTE_G4,NOTE_G4,NOTE_G4,NOTE_G4, NOTE_C5,NOTE_C5,NOTE_C5,NOTE_C5,
+NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,
+NOTE_G4,NOTE_F4,NOTE_E4,NOTE_C4,NOTE_D4,0,NOTE_D4,NOTE_A4,
+NOTE_G4,0,NOTE_F4,0,NOTE_E4,0,NOTE_E4,NOTE_E4,
+NOTE_G4,0,NOTE_F4,NOTE_E4,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_D4,0,NOTE_D4,NOTE_A4,
+NOTE_G4,0,NOTE_F4,0,NOTE_E4,0,NOTE_E4,NOTE_E4,
+NOTE_G4,0,NOTE_F4,NOTE_E4,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,
+NOTE_F4, NOTE_F4, NOTE_F4, NOTE_F4, NOTE_A4,NOTE_A4,NOTE_A4,NOTE_A4,
+NOTE_G4,NOTE_G4,NOTE_G4,NOTE_G4, NOTE_C5,NOTE_C5,NOTE_C5,NOTE_C5,
+NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,NOTE_D5,
+NOTE_G4,NOTE_F4,NOTE_E4,NOTE_C4,NOTE_D4,0,NOTE_D4,NOTE_A4,
+NOTE_G4,0,NOTE_F4,0,NOTE_E4,0,NOTE_E4,NOTE_E4,
+NOTE_G4,0,NOTE_F4,NOTE_E4,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_D4,0,NOTE_D4,NOTE_A4,
+NOTE_G4,0,NOTE_F4,0,NOTE_E4,0,NOTE_E4,NOTE_E4,
+NOTE_G4,0,NOTE_F4,NOTE_E4,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,NOTE_D4,0,NOTE_D4,NOTE_F5,
+NOTE_E5,NOTE_F5,NOTE_E5,NOTE_F5,
+};
+
+// 音符时长，8表示八分音符
+int noteDurations[] = {
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8, 8,8, 8,8,
+8,8, 8,8,
+};
+
+void setup() {
+  // 如果想重复一直播放，将此for循环放在loop()中
+  for (int note = 0; note < sizeof(melody)/sizeof(melody[0]); note++) {
+    // 计算音符时长，
+    int noteDuration = 1000 / noteDurations[note];
+    // 引脚、音律、音符时长
+    tone(11, melody[note], noteDuration);
+    // 为了区分开每个音符，在其中插入一个小的时间间隔，下面的1.3倍是官网中提供的值，应该是测试后比较理想的取值
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    // 停止
+    noTone(11);
+  }
+}
+
+void loop() {
+}
